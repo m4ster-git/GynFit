@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FF9800"
+    android:orientation="vertical">
+
+
+    <com.makeramen.roundedimageview.RoundedImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/rmv_profile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="10dp"
+        android:minHeight="80pt"
+        android:minWidth="80pt"
+        android:scaleType="fitCenter"
+        android:src="@drawable/user2"
+        app:riv_border_color="#fff"
+        app:riv_border_width="10dip"
+        app:riv_corner_radius="10dip"
+        app:riv_mutate_background="true" />
+
+    <EditText
+
+        android:id="@+id/etUsuario"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="2pt"
+        android:layout_marginRight="2pt"
+        android:background="@drawable/campo_cima_bg"
+        android:drawableLeft="@drawable/user"
+        android:hint="Usuario"
+        android:padding="10dp"
+        android:textColorHint="#bbbbbb" />
+
+    <EditText
+        android:id="@+id/etPass1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="2pt"
+        android:layout_marginRight="2pt"
+        android:background="@drawable/campo_meio_bg"
+        android:drawableLeft="@drawable/pass"
+        android:hint="Senha"
+        android:inputType="textPassword"
+        android:padding="10dp"
+        android:textColorHint="#bbbbbb" />
+
+    <EditText
+        android:id="@+id/etPass2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="2pt"
+        android:layout_marginRight="2pt"
+        android:background="@drawable/campo_meio_bg"
+        android:drawableLeft="@drawable/pass"
+        android:hint="Repita a senha"
+        android:inputType="textPassword"
+        android:padding="10dp"
+        android:textColorHint="#bbbbbb" />
+
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="center"
+        android:background="@drawable/campo_baixo_bg"
+        android:padding="10dp"
+        android:layout_marginLeft="2pt"
+        android:layout_marginRight="2pt"
+        android:id="@+id/rbg_tipo">
+
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Personal"
+            android:id="@+id/rb_Personal"
+            android:checked="true" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Aluno"
+            android:id="@+id/rb_Aluno" />
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/btCad"
+        style="@style/DefaultButtonText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="10dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="120dp"
+        android:background="@drawable/botao_fundo"
+        android:padding="10dp"
+        android:text="Cadastro" />
+
+    <TextView
+        android:id="@+id/tv_status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="#fff" />
+
+</LinearLayout>

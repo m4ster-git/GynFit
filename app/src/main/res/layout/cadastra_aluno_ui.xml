@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FF9800">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Dados Pessoais"
+        android:id="@+id/textView"
+        android:layout_gravity="center_horizontal"
+        android:textColor="#fff" />
+
+    <EditText
+        android:id="@+id/et_usuarioget"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="2pt"
+        android:layout_marginRight="2pt"
+        android:background="@drawable/campo_cima_bg"
+        android:hint="Usuario"
+        android:padding="10dp"
+        android:textColorHint="#bbbbbb"
+        android:layout_gravity="center_horizontal"
+        android:editable="false" />
+
+    <EditText
+        android:id="@+id/et_nome"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="2pt"
+        android:layout_marginRight="2pt"
+        android:background="@drawable/campo_meio_bg"
+        android:drawableLeft="@drawable/user"
+        android:hint="Nome do aluno"
+        android:padding="10dp"
+        android:textColorHint="#bbbbbb"
+        android:layout_gravity="center_horizontal" />
+
+    <EditText
+        android:id="@+id/et_idade"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="2pt"
+        android:layout_marginRight="2pt"
+        android:background="@drawable/campo_meio_bg"
+        android:hint="Idade"
+        android:padding="10dp"
+        android:textColorHint="#bbbbbb" />
+
+    <EditText
+        android:id="@+id/et_endereco"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="2pt"
+        android:layout_marginRight="2pt"
+        android:background="@drawable/campo_meio_bg"
+        android:drawableLeft="@drawable/home"
+        android:hint="Endereco"
+        android:padding="10dp"
+        android:textColorHint="#bbbbbb"
+        android:layout_gravity="center_horizontal" />
+
+    <EditText
+        android:id="@+id/et_email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="2pt"
+        android:layout_marginRight="2pt"
+        android:background="@drawable/campo_meio_bg"
+        android:drawableLeft="@drawable/mail"
+        android:hint="Email"
+        android:padding="10dp"
+        android:textColorHint="#bbbbbb" />
+
+    <EditText
+        android:id="@+id/et_telefone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="2pt"
+        android:layout_marginRight="2pt"
+        android:background="@drawable/campo_meio_bg"
+        android:drawableLeft="@drawable/phone"
+        android:hint="Telefone"
+        android:padding="10dp"
+        android:textColorHint="#bbbbbb"
+        android:layout_gravity="center_horizontal" />
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@drawable/campo_baixo_bg"
+        android:padding="10dp"
+        android:layout_marginLeft="2pt"
+        android:layout_marginRight="2pt"
+        android:id="@+id/rbg_sexo" >
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Masculino"
+            android:id="@+id/rb_masculino"
+            android:checked="true" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Feminino"
+            android:id="@+id/rb_feminino" />
+    </RadioGroup>
+
+    <Button
+        style="@style/DefaultButtonText"
+        android:id="@+id/bt_cadastro_aluno"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="10dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="120dp"
+        android:background="@drawable/botao_fundo"
+        android:padding="10dp"
+        android:text="Cadastro" />
+
+    <TextView
+        android:id="@+id/tv_status_aluno"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="#fff" />
+</LinearLayout>
