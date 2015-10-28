@@ -15,7 +15,6 @@ import android.widget.Toast;
  * Created by m4ster on 22/10/15.
  */
 public class Cadastro_Perfil extends Activity implements View.OnClickListener {
-    ArmazenamentoLocal armazenamentoLocal;
     Button bt_cadastrar;
     EditText et_nome;
     EditText et_idade;
@@ -30,9 +29,7 @@ public class Cadastro_Perfil extends Activity implements View.OnClickListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        armazenamentoLocal = new ArmazenamentoLocal(this);
         setContentView(R.layout.cadastra_aluno_ui);
-        Bundle extras = getIntent().getExtras();
         String usuario = getIntent().getStringExtra("usuario");
 
 

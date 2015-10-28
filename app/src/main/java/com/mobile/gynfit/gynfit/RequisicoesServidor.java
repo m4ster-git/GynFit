@@ -29,8 +29,6 @@ import java.util.ArrayList;
  */
 public class RequisicoesServidor {
     ProgressDialog progressDialog;
-    ArmazenamentoLocal armazenamentoLocal;
-
     public static final int ESPERA_CONEXAO = 2000 * 15;
     public static final String ENDERECO_SERVIDOR = "http://batatabacon.netne.net/";
 
@@ -50,6 +48,11 @@ public class RequisicoesServidor {
     public void GravaPerfilBackground(Perfil perfil, RetornoPerfil retornoPerfil) {
         progressDialog.show();
         new GravaPerfilAssinc(perfil, retornoPerfil).execute();
+    }
+    //Grava AlunoDoPersonal
+    public void GravaAlunoDoPersonalBackground(AlunoDoPersonal alunoDoPersonal , RetornoAlunoDoPersonal retornoAlunoDoPersonal) {
+        progressDialog.show();
+        new GravaAlunoDoPersonalAssinc(alunoDoPersonal, retornoAlunoDoPersonal).execute();
     }
     //Busca usuario
     public void BuscaUsuarioBackground(Usuario usuario, RetornoUsuario retornoUsuario) {
@@ -102,6 +105,48 @@ public class RequisicoesServidor {
 
             progressDialog.dismiss();
             retornoUsuario.Terminado(null);
+            super.onPostExecute(aVoid);
+        }
+    }
+    //Grava AlunoDoPersonal Assinc
+    public class GravaAlunoDoPersonalAssinc extends AsyncTask<Void, Void, Void> {
+        AlunoDoPersonal alunoDoPersonal;
+        RetornoAlunoDoPersonal retornoAlunoDoPersonal;
+
+        public GravaAlunoDoPersonalAssinc(AlunoDoPersonal alunoDoPersonal, RetornoAlunoDoPersonal retornoAlunoDoPersonal) {
+            this.alunoDoPersonal = alunoDoPersonal;
+            this.retornoAlunoDoPersonal = retornoAlunoDoPersonal;
+        }
+
+
+        @Override
+        protected Void doInBackground(Void... params) {
+            ArrayList<NameValuePair> enviaDado = new ArrayList<NameValuePair>();
+            enviaDado.add(new BasicNameValuePair("personal", alunoDoPersonal.personal));
+            enviaDado.add(new BasicNameValuePair("aluno", alunoDoPersonal.aluno));
+
+
+            HttpParams httpRequestParams = new BasicHttpParams();
+            HttpConnectionParams.setConnectionTimeout(httpRequestParams, ESPERA_CONEXAO);
+            HttpConnectionParams.setSoTimeout(httpRequestParams, ESPERA_CONEXAO);
+
+            HttpClient client = new DefaultHttpClient(httpRequestParams);
+            HttpPost post = new HttpPost(ENDERECO_SERVIDOR + "registra_alunodopersonal.php");
+            try {
+                post.setEntity(new UrlEncodedFormEntity(enviaDado));
+                client.execute(post);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+
+            progressDialog.dismiss();
+            retornoAlunoDoPersonal.Terminado(null);
             super.onPostExecute(aVoid);
         }
     }

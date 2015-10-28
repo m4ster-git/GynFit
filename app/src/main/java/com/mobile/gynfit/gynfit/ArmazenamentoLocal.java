@@ -35,6 +35,17 @@ public class ArmazenamentoLocal {
         spEditor.putString("sexo", perfil.sexo);
         spEditor.commit();
     }
+    public void limpaDadosPerfil() {
+        SharedPreferences.Editor spEditor = bancolocal.edit();
+        spEditor.putString("usuario","");
+        spEditor.putString("nome","");
+        spEditor.putString("idade","");
+        spEditor.putString("email","");
+        spEditor.putString("endereco","");
+        spEditor.putString("telefone","");
+        spEditor.putString("sexo","");
+        spEditor.commit();
+    }
 
     //Função para buscar usuários no  SharedPreferences Usuario
     public Usuario pegaDadosusuario() {

@@ -86,8 +86,6 @@ public class PrincipalPersonal extends ActionBarActivity{
 
     private void motrarUsuario(String usuario_var){
         Usuario usuario = armazenamentoLocal.pegaDadosusuario();
-        usuario_var = usuario.usuario;
-        Toast.makeText(PrincipalPersonal.this,"Logado "+usuario_var, Toast.LENGTH_LONG).show();
 
     }
 
@@ -99,7 +97,7 @@ public class PrincipalPersonal extends ActionBarActivity{
         setContentView(R.layout.principal_personal_ui);
         //Armazenamento local
         armazenamentoLocal = new ArmazenamentoLocal(this);
-        Usuario usuario = armazenamentoLocal.pegaDadosusuario();
+        final Usuario usuario = armazenamentoLocal.pegaDadosusuario();
         //Dados do perfil
         usuario_var = usuario.usuario;
         //Toolbar
@@ -161,7 +159,15 @@ public class PrincipalPersonal extends ActionBarActivity{
             }
         }));
         DrawerDireito.addItem(new SectionDrawerItem().withName("Alunos"));
-        DrawerDireito.addItem(new PrimaryDrawerItem().withName("Cadastrar Alunos"));
+        DrawerDireito.addItem(new PrimaryDrawerItem().withName("Cadastrar Alunos").withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
+            @Override
+            public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
+                final Intent cad_aluno = new Intent(PrincipalPersonal.this, Personal_Cadastra_Aluno.class);
+                cad_aluno.putExtra("usuario", usuario.usuario);
+                startActivity(cad_aluno);
+                return false;
+            }
+        }));
         DrawerDireito.addItem(new PrimaryDrawerItem().withName("Buscar Alunos"));
         DrawerDireito.addItem(new DividerDrawerItem().withTag("Avaliações"));
         DrawerDireito.addItem(new PrimaryDrawerItem().withName("Cadastrar Avaliação"));

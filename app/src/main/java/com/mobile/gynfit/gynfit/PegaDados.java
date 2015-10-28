@@ -13,20 +13,37 @@ import org.w3c.dom.Text;
 public class PegaDados extends Activity {
     ArmazenamentoLocal armazenamentoLocal;
     TextView tv_Debug;
-    String debug = "-";
+    public String debug = "";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.pega_dados_ui);
-        tv_Debug = (TextView)findViewById(R.id.tv_debug);
-       // armazenamentoLocal = new ArmazenamentoLocal(this);
-        Usuario usuariol = new Usuario("leandro","muranga");
+        tv_Debug = (TextView)findViewById(R.id.tv_debug2);
+        armazenamentoLocal = new ArmazenamentoLocal(this);
+        //
+        Perfil plocal = armazenamentoLocal.pegaDadosperfil();
+        Usuario ulocal = armazenamentoLocal.pegaDadosusuario();
 
-        tv_Debug.setText(  Autentica(usuariol));
+        //
+        debug = debug + "Usuario\n";
+        debug = debug + "USUARIO->" + ulocal.usuario + "\n";
+        debug = debug + "SENHA->" + ulocal.senha + "\n";
+        debug = debug + "TIPO->" + ulocal.tipo + "\n";
+        debug = debug + "Perfil\n";
+        debug = debug + "USUARIO->" + plocal.usuario + "\n";
+        debug = debug + "NOME->" + plocal.nome + "\n";
+        debug = debug + "ENDERECO->" + plocal.endereco + "\n";
+        debug = debug + "TELEFONE->" + plocal.telefone + "\n";
+        debug = debug + "IDADE->" + plocal.idade + "\n";
+        debug = debug + "SEXO->" + plocal.sexo + "\n";
+        debug = debug + "EMAIL->" + plocal.email + "\n";
 
-        Perfil perfill = new Perfil("leandro");
 
-        tv_Debug.setText(Autentica2(perfill));
+
+        //
+
+        tv_Debug.setText("Debug:\n"+debug);
 
 
 
@@ -35,52 +52,6 @@ public class PegaDados extends Activity {
 
     }
 
-    //
-    private String Autentica(Usuario usuario){
-        RequisicoesServidor requisicoesServidor = new RequisicoesServidor(this);
-        requisicoesServidor.BuscaUsuarioBackground(usuario, new RetornoUsuario() {
-            @Override
-            public void Terminado(Usuario retornoUsuario) {
-                if (retornoUsuario == null) {
-                    Toast.makeText(PegaDados.this, "Fail ", Toast.LENGTH_LONG).show();
-                } else {
-                    Toast.makeText(PegaDados.this, "ok -> " + retornoUsuario.tipo, Toast.LENGTH_LONG).show();
-                    debug = debug + "USUARIO->" + retornoUsuario.tipo + "\n";
-                    debug = debug + "SENHA->" + retornoUsuario.senha + "\n";
-                    debug = debug + "TIPO->" + retornoUsuario.tipo + "\n";
-
-
-                }
-            }
-
-
-        });
-        return debug;
-    }
-    //
-    private String Autentica2(Perfil perfil){
-        RequisicoesServidor requisicoesServidor = new RequisicoesServidor(this);
-        requisicoesServidor.BuscaPerfilBackground(perfil, new RetornoPerfil() {
-            @Override
-            public void Terminado(Perfil retornoPerfil) {
-                if (retornoPerfil == null) {
-                    Toast.makeText(PegaDados.this, "Fail ", Toast.LENGTH_LONG).show();
-                } else {
-                    debug = debug + "USUARIO->" + retornoPerfil.usuario + "\n";
-                    debug = debug + "NOME->" + retornoPerfil.nome + "\n";
-                    debug = debug + "ENDERECO->" + retornoPerfil.endereco + "\n";
-                    debug = debug + "TELEFONE->" + retornoPerfil.telefone + "\n";
-                    debug = debug + "IDADE->" + retornoPerfil.idade + "\n";
-                    debug = debug + "SEXO->" + retornoPerfil.sexo + "\n";
-                    debug = debug + "EMAIL->" + retornoPerfil.email + "\n";
-
-                }
-            }
-
-
-        });
-        return debug;
-    }
 
 ;
 }

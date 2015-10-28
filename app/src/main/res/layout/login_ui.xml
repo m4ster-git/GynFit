@@ -24,13 +24,38 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="2pt"
         android:layout_marginRight="2pt"
-        android:background="@drawable/campo_baixo_bg"
+        android:background="@drawable/campo_meio_bg"
         android:drawableLeft="@drawable/pass"
         android:hint="Senha"
         android:inputType="textPassword"
         android:padding="10dp"
         android:textColorHint="#bbbbbb" />
 
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/campo_baixo_bg"
+        android:padding="10dp"
+        android:layout_marginLeft="2pt"
+        android:layout_marginRight="2pt"
+        android:id="@+id/rgb_tipol" >
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Personal"
+            android:id="@+id/rb_Personall"
+            android:checked="true" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Aluno"
+            android:id="@+id/rb_Alunol" />
+    </RadioGroup>
 
     <Button
         android:id="@+id/btLog"

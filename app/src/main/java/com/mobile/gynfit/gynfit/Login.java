@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 
 /**
@@ -18,6 +20,8 @@ public class Login extends Activity implements View.OnClickListener{
     Button bt_login;
     TextView tv_status;
     ArmazenamentoLocal armazenamentoLocal;
+    RadioGroup rbg_tipo;
+    RadioButton rb_tipo;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,6 +30,7 @@ public class Login extends Activity implements View.OnClickListener{
         et_lsenha = (EditText)findViewById(R.id.etlPass);
         bt_login = (Button)findViewById(R.id.btLog);
         tv_status = (TextView)findViewById(R.id.status2);
+        rbg_tipo = (RadioGroup)findViewById(R.id.rgb_tipol);
         bt_login.setOnClickListener(this);
         armazenamentoLocal = new ArmazenamentoLocal(this);
     }
@@ -39,9 +44,19 @@ public class Login extends Activity implements View.OnClickListener{
                 String senha = et_lsenha.getText().toString();
                 tv_status.setText(verificaLogin(usuario,senha));
                 if(verificaLogin(usuario,senha).equals("")){
+                    int selectedId = rbg_tipo.getCheckedRadioButtonId();
+                    rb_tipo = (RadioButton) findViewById(selectedId);
+                    if (rb_tipo.getText().equals("Aluno")){
+                        Usuario usuariol = new Usuario(usuario,senha);
+                        Perfil perfill = new Perfil(usuario);
+                        Autentica2(perfill);
+                        Autentica(usuariol);
+                    }else {
+                        Usuario usuariol = new Usuario(usuario,senha);
+                        Autentica(usuariol);
+                    }
 
-                    Usuario usuariol = new Usuario(usuario,senha);
-                    Autentica(usuariol);
+
 
 
                 }
@@ -68,9 +83,9 @@ public class Login extends Activity implements View.OnClickListener{
         requisicoesServidor.BuscaUsuarioBackground(usuario, new RetornoUsuario() {
             @Override
             public void Terminado(Usuario retornoUsuario) {
-                if (retornoUsuario == null){
+                if (retornoUsuario == null) {
                     Mensagem_erro();
-                }else {
+                } else {
                     LoginUser(retornoUsuario);
 
                 }
@@ -79,6 +94,23 @@ public class Login extends Activity implements View.OnClickListener{
 
         });
     }
+    private void Autentica2(final Perfil perfil){
+        RequisicoesServidor requisicoesServidor = new RequisicoesServidor(this);
+        requisicoesServidor.BuscaPerfilBackground(perfil, new RetornoPerfil() {
+            @Override
+            public void Terminado(Perfil retornoPerfil) {
+                if (retornoPerfil == null) {
+                    Mensagem_erro();
+                } else {
+                    armazenamentoLocal.gravaDadosPerfil(retornoPerfil);
+
+                }
+            }
+
+
+        });
+    }
+
     private void Mensagem_erro(){
         AlertDialog.Builder builder = new AlertDialog.Builder(Login.this);
         builder.setMessage("Dados do usuário incorreto");
@@ -89,6 +121,13 @@ public class Login extends Activity implements View.OnClickListener{
         armazenamentoLocal.gravaDadosUsuario(retornoUsuario);
         armazenamentoLocal.DefinirLogado(true);
 
-        startActivity(new Intent(this,PegaDados.class));
+        if(retornoUsuario.tipo.equals("Aluno")){
+            startActivity(new Intent(this, PrincipalAluno.class));
+        }else {
+            startActivity(new Intent(this, PrincipalPersonal.class));
+        }
+
     }
+
+
 }

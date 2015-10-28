@@ -58,6 +58,10 @@
             android:name=".PegaDados"
             android:label="GynFit">
         </activity>
+        <activity
+            android:name=".Personal_Cadastra_Aluno"
+            android:label="GynFit">
+        </activity>
     </application>
 
 </manifest>

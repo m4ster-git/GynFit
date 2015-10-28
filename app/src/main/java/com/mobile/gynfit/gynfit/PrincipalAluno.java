@@ -35,7 +35,6 @@ public class PrincipalAluno extends ActionBarActivity{
 
     ArmazenamentoLocal armazenamentoLocal;
     public String usuario_var;
-    public String email_var;
     public String debug ="";
 
 
@@ -107,6 +106,7 @@ public class PrincipalAluno extends ActionBarActivity{
         //Armazenamento local
         armazenamentoLocal = new ArmazenamentoLocal(this);
         Usuario usuario = armazenamentoLocal.pegaDadosusuario();
+        Perfil perfil = armazenamentoLocal.pegaDadosperfil();
 
 
 
@@ -128,7 +128,7 @@ public class PrincipalAluno extends ActionBarActivity{
                 .withSavedInstance(savedInstanceState)
                 .withThreeSmallProfileImages(false)
                 .addProfiles(
-                        new ProfileDrawerItem().withName("Aluno " + usuario_var.toUpperCase()).withTypeface(Typeface.DEFAULT_BOLD).withEmail(email_var).withIcon(getResources().getDrawable(R.mipmap.ic_launcher))
+                        new ProfileDrawerItem().withName("Aluno " + perfil.nome).withTypeface(Typeface.DEFAULT_BOLD).withEmail(perfil.email).withIcon(getResources().getDrawable(R.mipmap.ic_launcher))
                 )
                 .withOnAccountHeaderListener(new AccountHeader.OnAccountHeaderListener() {
                     @Override
@@ -172,12 +172,12 @@ public class PrincipalAluno extends ActionBarActivity{
                 return false;
             }
         }));
-        DrawerDireito.addItem(new SectionDrawerItem().withName("Alunos"));
-        DrawerDireito.addItem(new PrimaryDrawerItem().withName("Cadastrar Alunos"));
-        DrawerDireito.addItem(new PrimaryDrawerItem().withName("Buscar Alunos"));
-        DrawerDireito.addItem(new DividerDrawerItem().withTag("Avaliações"));
-        DrawerDireito.addItem(new PrimaryDrawerItem().withName("Cadastrar Avaliação"));
-        DrawerDireito.addItem(new PrimaryDrawerItem().withName("Buscar Avaliação"));
+        DrawerDireito.addItem(new SectionDrawerItem().withName("Dados"));
+        DrawerDireito.addItem(new PrimaryDrawerItem().withName("Nome: "+perfil.nome));
+        DrawerDireito.addItem(new PrimaryDrawerItem().withName("Idade: " + perfil.idade));
+        DrawerDireito.addItem(new PrimaryDrawerItem().withName("Sexo: "+perfil.sexo));
+        DrawerDireito.addItem(new PrimaryDrawerItem().withName("Telefone: "+perfil.telefone));
+        DrawerDireito.addItem(new PrimaryDrawerItem().withName("Endereço: "+perfil.endereco));
         DrawerDireito.addItem(new SectionDrawerItem().withName("Configurações"));
         DrawerDireito.addItem(new SwitchDrawerItem().withName("Notificações").withChecked(true).withOnCheckedChangeListener(onCheckedChangeListener));
         DrawerDireito.addItem(new PrimaryDrawerItem().withName("Sobre"));
